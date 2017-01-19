@@ -5,7 +5,7 @@ public class PlayerMovementScript : MonoBehaviour {
 
     InputScript InputScript;
     Rigidbody2D rb2d;
-
+    Vector2 playerPosition;
     private float movementSpeed;
     public float MovementSpeed
     {
@@ -21,6 +21,8 @@ public class PlayerMovementScript : MonoBehaviour {
 
     void Update()
     {
-        rb2d.MovePosition(transform.position + InputScript.Left_Joystick_Direction * movementSpeed * Time.deltaTime);
+        playerPosition.x = transform.position.x;
+        playerPosition.y = transform.position.y;
+        rb2d.MovePosition(playerPosition + InputScript.Left_Joystick_Direction * movementSpeed * Time.deltaTime);
     }
 }

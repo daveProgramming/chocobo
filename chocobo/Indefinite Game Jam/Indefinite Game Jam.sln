@@ -1,7 +1,7 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2015
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Indefinite Game Jam.CSharp", "Indefinite Game Jam.CSharp.csproj", "{DCA1BE83-367C-FAF8-3B14-02BC8472940E}"
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{376F10DB-F1A1-A257-859E-8E30DB77884F}") = "Indefinite Game Jam", "Assembly-CSharp.csproj", "{5A1C1160-55E9-A145-EC36-FDC436ECDFD5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,12 +9,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DCA1BE83-367C-FAF8-3B14-02BC8472940E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DCA1BE83-367C-FAF8-3B14-02BC8472940E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DCA1BE83-367C-FAF8-3B14-02BC8472940E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DCA1BE83-367C-FAF8-3B14-02BC8472940E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A1C1160-55E9-A145-EC36-FDC436ECDFD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A1C1160-55E9-A145-EC36-FDC436ECDFD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A1C1160-55E9-A145-EC36-FDC436ECDFD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A1C1160-55E9-A145-EC36-FDC436ECDFD5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
 	EndGlobalSection
 EndGlobal
