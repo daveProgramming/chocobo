@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System;
+
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 [Serializable]
 public class ColorPalette : ScriptableObject {
-    
+    #if UNITY_EDITOR
     [MenuItem("Assets/Create/Color Palette")]
     public static void CreateColorPalette()
     {
@@ -17,7 +21,102 @@ public class ColorPalette : ScriptableObject {
             selectionPath = selectionPath.Replace(".png", "-color-palette.asset");
 
             var newPalette = CustomAssetUtility.CreateAsset<ColorPalette>(selectionPath);
+
+            newPalette.source = selectedTexture;
+            newPalette.Resetpalette();
+
+
         }
     }
+    #endif
+    public Texture2D source;
+    public List<Color> palette = new List<Color>();
+    public List<Color> newPalette = new List<Color>();
+    public Texture2D cachedTexture;
 
+
+
+    private List<Color> BuildPalette(Texture2D texture)
+    {
+        List<Color> palette = new List<Color>();
+
+        var colors = texture.GetPixels();
+
+        foreach (var color in colors)
+        {
+            if (!palette.Contains(color))
+            {
+                if(color.a == 1)
+                {
+                    palette.Add(color);
+                }
+            }
+        }
+        return palette;
+    }
+    public void Resetpalette()
+    {
+        palette = BuildPalette(source);
+        newPalette = new List<Color>(palette);
+
+    }
+
+    public Color GetColor(Color color)
+    {
+        for (var i = 0; i < palette.Count; i++)
+        {
+            var tmpColor = palette[i];
+            if(Mathf.Approximately(color.r, tmpColor.r) && Mathf.Approximately(color.g, tmpColor.g) && Mathf.Approximately(color.b, tmpColor.b) && Mathf.Approximately(color.a, tmpColor.a))
+            {
+                return newPalette[i];
+            }
+        }
+        return color;
+    }
 }
+
+#if UNITY_EDITOR
+[CustomEditor(typeof(ColorPalette))]
+public class ColorPaletteEditor : Editor
+{
+    public ColorPalette colorPalette;
+
+    void OnEnable()
+    {
+        colorPalette = target as ColorPalette;
+    }
+
+    public override void OnInspectorGUI()
+    {
+        GUILayout.Label("Source Texture");
+
+        colorPalette.source = EditorGUILayout.ObjectField(colorPalette.source, typeof(Texture2D), false) as Texture2D;
+
+        EditorGUILayout.BeginHorizontal();
+
+        GUILayout.Label("Current Color");
+
+        GUILayout.Label("New Label");
+
+        EditorGUILayout.EndHorizontal();
+
+        for (var i = 0; i < colorPalette.palette.Count; i++)
+        {
+            EditorGUILayout.BeginHorizontal();
+
+            EditorGUILayout.ColorField(colorPalette.palette[i]);
+
+            colorPalette.newPalette[i] = EditorGUILayout.ColorField(colorPalette.newPalette[i]);
+
+            EditorGUILayout.EndHorizontal();
+        }
+
+        if(GUILayout.Button("Revert Palette"))
+        {
+            colorPalette.Resetpalette();
+        }
+
+        EditorUtility.SetDirty(colorPalette);
+    }
+}
+#endif

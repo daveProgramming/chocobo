@@ -56,6 +56,7 @@
      <Compile Include="Assets\Scripts\Menu.cs" />
      <Compile Include="Assets\Scripts\PaletteSwapping\ColorPalette.cs" />
      <Compile Include="Assets\Scripts\PaletteSwapping\CustomAssetUtility.cs" />
+     <Compile Include="Assets\Scripts\PaletteSwapping\PaletteSwapper.cs" />
      <Compile Include="Assets\Scripts\PickupScript.cs" />
      <Compile Include="Assets\Scripts\PlaceSquare.cs" />
      <Compile Include="Assets\Scripts\PlayerAnimatorController.cs" />
